@@ -22,6 +22,7 @@ export function createApp () {
     store,
     render: h => h(App)
   })
+
   // const matchedComponents = router.getMatchedComponents()
   // matchedComponents.map(item => {
   //   console.log(item.asyncData)

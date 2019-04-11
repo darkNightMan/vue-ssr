@@ -14,7 +14,7 @@ export function createRouter () {
         component: Wang
       },
       {
-        path: '/test',
+        path: '/test/:id',
         name: 'test',     
         component: Test
       }

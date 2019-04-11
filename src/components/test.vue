@@ -13,8 +13,7 @@ export default {
     }
   },
   asyncData({store}) {
-    debugger
-    return store.dispatch('GET_ARTICLE') // 返回promise
+    // return store.dispatch('GET_ARTICLE') // 返回promise
   },
   mounted (){
     console.log(this.$store.state.route)

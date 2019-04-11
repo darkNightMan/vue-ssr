@@ -2,7 +2,9 @@
   <div>
       {{msg}}
       <div @click="getData">点击</div>
-      <div>{{article}}</div>
+      <div>{{article.views}}</div>
+      <div>{{article.content}}</div>
+      <router-link :to="{path:'/test',query: {id: new Date()}}">测试</router-link>
     </div>
 </template>
 
@@ -36,7 +38,7 @@ export default {
   },
   methods:{
     getData () {
-      alert(1)
+      console.log(this)
     }
   }
 }
