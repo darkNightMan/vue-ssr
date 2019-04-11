@@ -21,7 +21,6 @@ export  function createStore() {
         state.article = data.data
       },
       SET_ARTICLE_VIEWS (state, data) {
-        debugger
         state.article.views = data
       },
     }

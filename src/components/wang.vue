@@ -1,7 +1,9 @@
 <template>
   <div>
       {{msg}}
+      <br/>  <br/>  <br/>
       <div @click="getData" style="cursor: pointer;">点击</div>
+      
       <div>{{article.views}}</div>
       <br/>  <br/>  <br/>
       <div>{{article.content}}</div>
@@ -14,7 +16,7 @@
 export default {
   data() {
     return {
-      msg: "wangxiping"
+      msg: "本地数据（wangxiping）"
     }
   },
   asyncData({store, route}) {

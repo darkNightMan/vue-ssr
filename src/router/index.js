@@ -2,6 +2,7 @@ import Router from 'vue-router'
 import Vue from 'vue'
 import Wang from '../components/wang.vue'
 import Test from '../components/test.vue'
+import YS from '../components/ys.vue'
 Vue.use(Router)
 
 export function createRouter () {
@@ -17,6 +18,11 @@ export function createRouter () {
         path: '/test/:id',
         name: 'test',     
         component: Test
+      },
+      {
+        path: '/ys/',
+        name: 'ys',     
+        component: YS
       }
     ]
   })
