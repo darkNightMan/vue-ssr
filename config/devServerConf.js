@@ -11,6 +11,7 @@ module.exports = {
     autoOpenBrowser: true, // 启动webpack-dev-server后是否使用浏览器打开首页。
     publicPath: '',  // 设置内存中的打包文件的输出目录。区别于output.publicPath。
     cssSourceMap: '',
+    inline: true,
     proxyTable: {   // 代理配置，对于另外有单独的后端开发服务器API来说比较适合。
       '/api':
        {

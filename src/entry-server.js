@@ -6,7 +6,9 @@ export default context => {
     const { app, router, store } = createApp()
     // 路由跳转
     router.push(context.url)
+    // 路由下异步组件和钩子函数解析完
     router.onReady(() => {
+      // 返回目标位置或是当前路由匹配的组件数组
       const matchedComponents = router.getMatchedComponents()
       if (!matchedComponents.length) {
         return reject({ code: 404 })
