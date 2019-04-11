@@ -13,13 +13,17 @@ export  function createStore() {
       async GET_ARTICLE({commit}) {
         const {data} = await axios.get('https://www.86886.wang/api/article/5b38d0098c98760acf25bfac')
         commit('SET_ARTICLE', data)
-      }
+      },
+    
     },
     mutations: {
       SET_ARTICLE(state, data) {
         state.article = data.data
-        console.log(state.article)
-      }
+      },
+      SET_ARTICLE_VIEWS (state, data) {
+        debugger
+        state.article.views = data
+      },
     }
   })
 }

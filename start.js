@@ -78,4 +78,6 @@ app.use(async (ctx, next) => {
   }
 })
 
-app.listen(3001)
+app.listen(3001 ,() =>{
+  console.log('访问：http://127.0.0.1:3001');
+})
