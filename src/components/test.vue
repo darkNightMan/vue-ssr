@@ -12,9 +12,9 @@ export default {
       msg: "test"
     }
   },
-  asyncData({store}) {
-    // return store.dispatch('GET_ARTICLE') // 返回promise
-  },
+  // asyncData({store}) {
+  //   // return store.dispatch('GET_ARTICLE') // 返回promise
+  // },
   mounted (){
     console.log(this.$store.state.route)
   

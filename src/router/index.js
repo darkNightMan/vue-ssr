@@ -15,12 +15,12 @@ export function createRouter () {
         component: Wang
       },
       {
-        path: '/test/:id',
+        path: '/test.html',
         name: 'test',     
         component: Test
       },
       {
-        path: '/ys/',
+        path: '/ys.html/',
         name: 'ys',     
         component: YS
       }

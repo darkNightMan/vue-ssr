@@ -7,7 +7,7 @@
       <div>父组件({{article.views}})</div>
       <br/><br/><br/>
       <div>{{article.content}}</div>
-      <router-link :to="{path:'/test',query: {id: new Date()}}">测试</router-link>
+      <router-link :to="{path:'/test.html',query: {id: new Date()}}">测试</router-link>
     </div>
 </template>
 <script>

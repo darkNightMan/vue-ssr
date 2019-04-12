@@ -1,56 +1,38 @@
-// const express = require('express')
-// const fs = require('fs')
-// const path = require('path')
-// const server = express()
-// const {createBundleRenderer} = require('vue-server-renderer')
-// const resolve = file => path.resolve(__dirname, file)
-
-// // 生成服务端渲染函数
-// const renderer = createBundleRenderer(require('./dist/vue-ssr-server-bundle.json'), {
-//   // 推荐
-//   runInNewContext: false,
-//   // 模板html文件
-//   template: fs.readFileSync(resolve('./index.html'), 'utf-8'),
-//   // client manifest
-//   clientManifest: require('./dist/vue-ssr-client-manifest.json')
-// })
-
-// server.get('*', (req, res) => {
-//   renderer.renderToString((err, html) => {
-//     // console.log(html)
-//     if (err) {
-//       console.error(err);
-//       res.status(500).end('服务器内部错误');
-//       return;
-//     }
-//     res.end(html);
-//   })
-// });
-
-
-// server.listen(8022, () => {
-//   console.log('访问：http://127.0.0.1:8022');
-// });
-
-
-const Koa = require('koa')
-const app = new Koa()
+const express = require('express')
 const fs = require('fs')
 const path = require('path')
+const server = express()
 const { createBundleRenderer } = require('vue-server-renderer')
-
 const resolve = file => path.resolve(__dirname, file)
 
-// 生成服务端渲染函数
-const renderer = createBundleRenderer(require('./dist/vue-ssr-server-bundle.json'), {
-  // 推荐
-  runInNewContext: false,
-  // 模板html文件
-  template: fs.readFileSync(resolve('./index.html'), 'utf-8'),
-  // client manifest
-  clientManifest: require('./dist/vue-ssr-client-manifest.json')
+const clientBundle = require('./dist/vue-ssr-client-manifest.json') // 客户端 bundle
+const serverBundle = require('./dist/vue-ssr-server-bundle.json')   // 服务的 bundle
+const template = fs.readFileSync(resolve('./index.html'), 'utf-8')  // 渲染模板
+ 
+let renderer
+
+  // 生成服务端渲染函数
+function createRenderer (serverbundle, clientBundle ,template) {
+  // 生成服务端渲染函数
+  return createBundleRenderer(serverbundle, {
+    // 推荐
+    runInNewContext: false,
+    // 模板html文件
+    template: template,
+    // client manifest
+    clientManifest: clientBundle
+  })
+}
+
+const serve = (path, cache) => express.static(resolve(path), { // 静态资源设置缓存
+  maxAge: cache ? 60 * 60 * 24 * 30 : 0 
 })
 
+server.use('/dist', serve('./dist', true)) // 静态资源
+
+renderer = createRenderer(serverBundle, clientBundle, template)
+
+// 
 function renderToString (context) {
   return new Promise((resolve, reject) => {
     renderer.renderToString(context, (err, html) => {
@@ -58,26 +40,41 @@ function renderToString (context) {
     })
   })
 }
-app.use(require('koa-static')(resolve('./dist')))
-// response
-app.use(async (ctx, next) => {
-  try {
-    const context = {
-      title: '服务端渲染测试', // {{title}}
-      url: ctx.url
-    }
-    // 将服务器端渲染好的html返回给客户端
-    ctx.body = await renderToString(context)
 
-    // 设置请求头
-    ctx.set('Content-Type', 'text/html')
-    ctx.set('Server', 'Koa2 server side render')
-  } catch (e) {
-    // 如果没找到，放过请求，继续运行后面的中间件
-    next()
+server.get('*',async(req, res) => {
+  // 未渲染好返回
+  if (!renderer) {
+    return res.end('waiting for compilation... refresh in a moment.')
   }
-})
+  const handleError = err => {
+    if (err.url) {
+      res.redirect(err.url)
+    } else if (err.code === 404) {
+      res.status(404).send('404 | Page Not Found')
+    } else {
+      res.status(500).send('500 | Internal Server Error')
+      console.error(`error during render : ${req.url}`)
+      console.error(err.stack)
+    }
+  }
+ try {
+    res.setHeader('Content-Type', 'text/html')
+    const context = { title: 'SSR我来啦', url: req.url  }
+    const html = await renderToString(context)
+    res.send(html)
+  } catch (error) {
+    handleError(error)
+  }
+}) 
+server.listen(8022, () => {
+  console.log('访问：http://127.0.0.1:8022');
+});
 
-app.listen(3001 ,() =>{
-  console.log('访问：http://127.0.0.1:3001');
-})
+
+
+
+
+
+
+
+

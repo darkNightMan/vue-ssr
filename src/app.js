@@ -24,7 +24,6 @@ export function createApp () {
   })
 
   const matchedComponents = router.getMatchedComponents()
-  debugger
   // matchedComponents.map(item => {
   //   console.log(item.asyncData)
   //   debugger

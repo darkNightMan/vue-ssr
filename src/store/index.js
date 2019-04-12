@@ -15,7 +15,7 @@ export  function createStore() {
         commit('SET_ARTICLE', data)
       },
 
-      async GET_WEATHER () {
+      async GET_WEATHER ({commit}) {
         const {data} = await axios.get('http://t.weather.sojson.com/api/weather/city/101030100')
         commit('SET_WEATHER', data)
       },
