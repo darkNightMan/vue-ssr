@@ -1,3 +1,70 @@
+
+## 搭建自己简单的ssr框架
+
+
+
+### 前言
+
+ 
+
+##### 服务端渲染的优点
+  1.更好的SEO，搜索引擎爬虫可以抓取渲染好的页面
+  2.更快的内容到达时间（首屏加载更快），因为服务端只需要返回渲染好的HTML，这部分代码量很小的，所以用户体验更好
+
+#### 服务端渲染的缺点
+  1.首先就是开发成本比较高，比如某些声明周期钩子函数（如beforeCreate、created）能同时运行在服务端和客户端，
+  因此第三方库要做特殊处理，才能在服务器渲染应用程序中运行。
+  2.由于服务端渲染要用Nodejs做中间层，所以部署项目时，需要处于Node.js server运行环境。在高流量环境下，还要做好服务器负载和缓存策略
+
+
+
+
+
+
+
+项目结构
+
+```
+.
+├── README.md
+├── build
+│   ├── webpack.base.conf.js    ##  webpack 公共配置
+│   ├── webpack.dev.conf.js     ##  webpack 本地开发配置
+│   ├── webpack.prod.conf.js    ## 打包client端的配置
+│   └── webpack.server.conf.js  ## 打包server端的配置
+├── config
+│   ├── buildConf.js      ## 打包配置项
+│   ├── dev.env.js        ## 变量配置
+│   ├── devServerConf.js  ## 开发配置项
+│   └── prod.env.js       ## 变量配置    
+├── favicon.ico
+├── index.dev.html ## 本地开发模板
+├── index.pro.html  ## 
+├── package-lock.json
+├── package.json
+├── src
+│   ├── App.vue     #  根 vue组件
+│   ├── app.js      # 整合 router,store,vuex 的入口文件
+│   ├── components  # 组件
+│   │   ├── child.vue
+│   │   ├── test.vue
+│   │   ├── wang.vue
+│   │   └── ys.vue
+│   ├── entry-clinet.js   # 客户端js打包入口  生成bundle  
+│   ├── entry-server.js   # 服务端js打包入口  生成bundle
+│   ├── registerServiceWorker.js
+│   ├── router
+│   │   └── index.js
+│   └── store
+│       └── index.js
+└── start.js
+```
+
+
+
+
+
+
 ```
 # 安装运行时包根据顺序解释
 # 1.axios - http 请求工具

@@ -7,7 +7,7 @@ const resolve = file => path.resolve(__dirname, file)
 
 const clientBundle = require('./dist/vue-ssr-client-manifest.json') // 客户端 bundle
 const serverBundle = require('./dist/vue-ssr-server-bundle.json')   // 服务的 bundle
-const template = fs.readFileSync(resolve('./index.html'), 'utf-8')  // 渲染模板
+const template = fs.readFileSync(resolve('./index.pro.html'), 'utf-8')  // 渲染模板
  
 let renderer
 
