@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export  function createStore() {
   return new Vuex.Store({
     state: {
-      article: {}
+      article: {},
+      weather: {}
     },
     actions: {
       async GET_ARTICLE({commit}) {
@@ -17,7 +18,7 @@ export  function createStore() {
 
       async GET_WEATHER ({commit}) {
         const {data} = await axios.get('http://t.weather.sojson.com/api/weather/city/101030100')
-        commit('SET_WEATHER', data)
+        commit('SET_WEATHER', data.data)
       },
     
     },
@@ -28,7 +29,7 @@ export  function createStore() {
       SET_ARTICLE_VIEWS (state, data) {
         state.article.views = data
       },
-      SER_WEATHER(state, data) {
+      SET_WEATHER(state, data) {
         state.weather = data
       }
     }

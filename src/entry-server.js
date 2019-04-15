@@ -5,15 +5,17 @@ export default context => {
   return new Promise((resolve, reject) => {
     const { app, router, store } = createApp()
     // 路由跳转
+    console.log(context)
     router.push(context.url)
     // 路由下异步组件和钩子函数解析完
     router.onReady(() => {
       // 返回目标位置或是当前路由匹配的组件数组
       const matchedComponents = router.getMatchedComponents()
+      console.log(matchedComponents)
       if (!matchedComponents.length) {
         return reject({ code: 404 })
       }
-      // 对所有匹配的路由组件调用 `asyncData()`
+      //  // 遍历路由下所以的组件，如果有需要服务端渲染的请求，则进行请求
       Promise.all(matchedComponents.map(Component => {
         if (Component.asyncData) {
             return Component.asyncData({store,route: router.currentRoute })

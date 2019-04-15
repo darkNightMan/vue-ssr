@@ -2,8 +2,19 @@ import { createApp } from './app'
 import App from './App.vue';
 import Vue from 'vue'
 const {app, router, store} = createApp()
-
-
+const  prefetchFns = []
+const components = App.components 
+for (let key in components) {
+  debugger
+  if (!components.hasOwnProperty(key)) continue;
+  let component = components[key];
+  if(component.asyncData) {
+      prefetchFns.push(component.asyncData({
+          store
+      }))
+  }
+}
+console.log(router.getMatchedComponents())
 Vue.mixin({
   // beforeMount () {
   //   const { asyncData } = this.$options
@@ -36,5 +47,6 @@ if (window.__INITIAL_STATE__) {
   store.replaceState(window.__INITIAL_STATE__);
 }
 router.onReady(() => {
+  
   app.$mount('#app')
 })

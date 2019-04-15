@@ -6,6 +6,10 @@
 
 <script>
 export default {
+  // 服务的操作
+  asyncData({store}) {
+    return store.dispatch('GET_WEATHER') // 返回promise
+  },
   data() {
     return {
       msg: "子组件"
@@ -16,16 +20,13 @@ export default {
       return this.$store.state.article
     }
   },
-  // 服务的操作
-  asyncData({store}) {
-    return store.dispatch('SER_WEATHER') // 返回promise
-  },
+  
   created() {
-    console.log('created------------子组件执行服务端----------')
+    console.log('created------------子组child件执行服务端----------')
   },
 
   beforeCreate () {
-    console.log('beforeCreate-------子组件执行服务端-----------')
+    console.log('beforeCreate-------子组child件执行服务端-----------')
   },
   mounted (){
     console.log(this.$store.state.route)

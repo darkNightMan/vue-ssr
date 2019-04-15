@@ -1,25 +1,28 @@
 <template>
   <div>
       {{msg}}
-      <br/>  <br/>  <br/>
-      <div @click="getData" style="cursor: pointer;">点击</div>
-       <child></child>
-      <div>父组件({{article.views}})</div>
       <br/><br/><br/>
+      <div @click="getData" style="cursor: pointer;">点击</div>      
+      <div>父组件({{article.views}})</div>   
       <div>{{article.content}}</div>
+
+       <child ref="reference"></child>
+        <ys></ys>
       <router-link :to="{path:'/test.html',query: {id: new Date()}}">测试</router-link>
     </div>
 </template>
 <script>
 import child from './child.vue'
+import ys from './ys.vue'
 export default {
   data() {
     return {
       msg: "本地数据（wangxiping）"
     }
   },
-   components: {
+  components: {
     child,
+    ys
   },
   asyncData({store, route}) {
     return store.dispatch('GET_ARTICLE') // 返回promise

@@ -9,6 +9,23 @@
   </div>
 </template>
 
+<script>
+import child from '@/components/child'
+import ys from '@/components/ys.vue'
+export default {
+  components: {
+    child,
+    ys
+  },
+}
+</script>
+
+
+
+
+
+
+
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    测试
+    {{weather}}
   </div>
 </template>
 
@@ -12,9 +12,14 @@ export default {
       msg: "test"
     }
   },
-  // asyncData({store}) {
-  //   // return store.dispatch('GET_ARTICLE') // 返回promise
-  // },
+  asyncData({store}) {
+    return store.dispatch('GET_WEATHER') // 返回promise
+  },
+  computed: {
+    weather () {
+      return this.$store.state.weather
+    }
+  },
   mounted (){
     console.log(this.$store.state.route)
   
