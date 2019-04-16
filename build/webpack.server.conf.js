@@ -1,10 +1,7 @@
 const merge = require('webpack-merge');
 const webpack  = require('webpack');
 const base = require('./webpack.base.conf.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin')
-const VueSSRPlugin = require('vue-ssr-webpack-plugin')
-const path = require('path');
 const serveConfig = merge(base, {
   target: 'node',
   mode: 'production',

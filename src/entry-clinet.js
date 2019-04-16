@@ -28,6 +28,7 @@ Vue.mixin({
   //     })
   //   }
   // },
+  // 客户端数据预取 (Client Data Fetching)
   beforeRouteEnter (to, from, next) {
     console.log('beforeRouteEnter')
     next((vm)=>{
@@ -41,9 +42,7 @@ Vue.mixin({
   },
 })
 
-
-
-if (window.__INITIAL_STATE__) {
+if (window.__INITIAL_STATE__) { //把store中的state 替换成 window.__INITIAL_STATE__ 中的数据
   store.replaceState(window.__INITIAL_STATE__);
 }
 router.onReady(() => {

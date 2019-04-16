@@ -21,10 +21,13 @@ export  function createStore() {
       },
 
       async GET_WEATHER ({commit}) {
+        try {
         const {data} = await axios.get('http://t.weather.sojson.com/api/weather/city/101030100')
         commit('SET_WEATHER', data.data)
+        } catch (ex) {
+          console.log(ex)
+        }
       },
-    
     },
     mutations: {
       SET_ARTICLE(state, data) {
