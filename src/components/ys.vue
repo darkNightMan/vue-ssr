@@ -13,6 +13,7 @@ export default {
     }
   },
   asyncData({store}) {
+    debugger
     return store.dispatch('GET_ARTICLE') // 返回promise
   },
   

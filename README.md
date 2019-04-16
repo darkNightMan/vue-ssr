@@ -1,3 +1,22 @@
+### Build Setup
+
+```
+  # install dependencies   安装依赖
+  npm install
+
+  # serve no reload at localhost:10085   ## 本地开发模式
+  npm run dev
+
+  # node serve  reload at localhost:8022  ## 开启node服务
+  npm run start
+
+  # build for production with minification  ## 打包客户端
+  npm run build  
+
+  # build for production with SSR  ##  ssr前后端同构打包
+  npm run ssr
+
+```
 
 ## 搭建自己简单的ssr框架
 

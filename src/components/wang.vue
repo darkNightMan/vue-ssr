@@ -5,10 +5,6 @@
       <div @click="getData" style="cursor: pointer;">点击</div>      
       <div>父组件({{article.views}})</div>   
       <div>{{article.content}}</div>
-
-       <child ref="reference"></child>
-        <ys></ys>
-      <router-link :to="{path:'/test.html',query: {id: new Date()}}">测试</router-link>
     </div>
 </template>
 <script>

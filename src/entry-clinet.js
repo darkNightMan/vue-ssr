@@ -5,7 +5,6 @@ const {app, router, store} = createApp()
 const  prefetchFns = []
 const components = App.components 
 for (let key in components) {
-  debugger
   if (!components.hasOwnProperty(key)) continue;
   let component = components[key];
   if(component.asyncData) {
@@ -14,6 +13,7 @@ for (let key in components) {
       }))
   }
 }
+console.log( App.components )
 console.log(router.getMatchedComponents())
 Vue.mixin({
   // beforeMount () {
