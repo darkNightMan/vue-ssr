@@ -543,7 +543,7 @@ ReferenceError: window is not defined
 ```
 ##### 需要注意的一个地方vue-style-loader  和 style-loader  默认的Webpack样式加载程序不是同构的
 ##### 所以当打包出来是没问题可是运行在服务端就会报错了后来在github也有人遇到同样的问题看到尤大大的回答
-##### ![image](CBE4A2140C2F4CF295084BFBFE712384)
+##### ![image](//cdn.files.qdfuns.com/article/content/picture/201904/16/181116foy7qgod0cz8t55t.png)
 ##### 所以在这里使用vue-style-loader
 ---
 ```
@@ -754,17 +754,17 @@ server.listen(8022, () => {
 服务端渲染：http://127.0.0.1:8022/
 客户端渲染：http://localhost:10085/
 ```
-![image](0F1EC88147ED4D6DBBA0BE4381064B92)
+![image](//cdn.files.qdfuns.com/article/content/picture/201904/16/181114llhlmyhdnhvnpklg.png)
 
 #### 首屏加载渲染速度对比通过谷歌浏览器开发者工具-performace面板来比较服务端渲染和客户端渲染
 
 #### 通过几张图来对比看看
 
 客户端渲染
-![image](70D3868B503F4E08B78C759898125B2D)
+![image](//cdn.files.qdfuns.com/article/content/picture/201904/16/181120yohphhkohztdbl6k.png)
 
 服务端渲染
-![image](15846F5CDC62463A8039CEEB9CFD792F)
+![image](//cdn.files.qdfuns.com/article/content/picture/201904/16/181118pw3r3eo0c95f0zp5.png)
 
 
 
