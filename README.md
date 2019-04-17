@@ -543,7 +543,7 @@ ReferenceError: window is not defined
 ```
 ##### 需要注意的一个地方vue-style-loader  和 style-loader  默认的Webpack样式加载程序不是同构的
 ##### 所以当打包出来是没问题可是运行在服务端就会报错了后来在github也有人遇到同样的问题看到尤大大的回答
-##### ![image](//cdn.files.qdfuns.com/article/content/picture/201904/16/181116foy7qgod0cz8t55t.png)
+ ![image](//cdn.files.qdfuns.com/article/content/picture/201904/16/181116foy7qgod0cz8t55t.png)
 ##### 所以在这里使用vue-style-loader
 ---
 ```
