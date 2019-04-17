@@ -6,6 +6,7 @@
 
 
 <script>
+import {mapState} from 'vuex'
 export default {
   data() {
     return {
@@ -15,10 +16,15 @@ export default {
   asyncData({store}) {
     return store.dispatch('GET_WEATHER') // 返回promise
   },
+  // computed: {
+  //   weather () {
+  //     return this.$store.state.weather
+  //   }
+  // },
   computed: {
-    weather () {
-      return this.$store.state.weather
-    }
+    ...mapState([
+        'weather'
+    ])
   },
   mounted (){
     console.log(this.$store.state.route)
